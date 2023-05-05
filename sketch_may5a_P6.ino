@@ -1,4 +1,6 @@
-#include <Wire.h>
+//Byron Pineda 
+//2022121
+#include <Wire.h> //Librerias necesarias para el codigo y circuito
 #include <RTClib.h>
 #include <LiquidCrystal_I2C.h>
 #include <DallasTemperature.h>
@@ -6,7 +8,7 @@
 int bomba = 2;
 RTC_DS3231 reloj;
 #define pinbuzzer 8
-#define ONE_WIRE_BUS 3
+#define ONE_WIRE_BUS 3 //Sensor de Temperatura
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
@@ -44,7 +46,7 @@ DateTime fecha = reloj.now();
  
  delay(1000);	
 
- if(fecha.minute() == 34){
+ if(fecha.minute() == 34){ //Se ajusta el tiempo en que se regara el agua
    lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("con agua se regara");
@@ -54,7 +56,7 @@ DateTime fecha = reloj.now();
   delay(1000);
   digitalWrite(bomba,LOW);}
  
-if(fecha.minute() < 34 ||fecha.minute() > 34){
+if(fecha.minute() < 34 ||fecha.minute() > 34){ //Se coloca el rango para ver en que hora no se regara
   lcd.setCursor(0, 0); // X, Y
   lcd.print("no ha empezado");
   delay(500);
